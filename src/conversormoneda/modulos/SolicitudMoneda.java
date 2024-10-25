@@ -40,9 +40,6 @@ public class SolicitudMoneda {
                 break;
             }
 
-            System.out.println("Escribe la cantidad: ");
-            cantidad = teclado.nextInt();
-
             //En un switch elegimos el número del caso digitado por el usuario
             switch(eleccion){
                 case 1:
@@ -75,33 +72,35 @@ public class SolicitudMoneda {
                     break;
             }
 
-            direccion = "https://v6.exchangerate-api.com/v6/9907bff63798f348f1bbeb77/pair/" + monedaOrigen + "/" + monedaDestino + "/" + cantidad;
+            if(eleccion > 0 && eleccion <8){
+                System.out.println("Escribe la cantidad: ");
+                cantidad = teclado.nextInt();
 
-            try{
-                HttpClient client = HttpClient.newHttpClient();
-                HttpRequest request = HttpRequest.newBuilder()
-                        .uri(URI.create(direccion))
-                        .build();
+                direccion = "https://v6.exchangerate-api.com/v6/9907bff63798f348f1bbeb77/pair/" + monedaOrigen + "/" + monedaDestino + "/" + cantidad;
 
-                HttpResponse<String> response = client
-                        .send(request, HttpResponse.BodyHandlers.ofString());
+                try{
+                    HttpClient client = HttpClient.newHttpClient();
+                    HttpRequest request = HttpRequest.newBuilder()
+                            .uri(URI.create(direccion))
+                            .build();
 
-                String json = response.body();
+                    HttpResponse<String> response = client
+                            .send(request, HttpResponse.BodyHandlers.ofString());
 
-                //System.out.println(json);
+                    String json = response.body();
 
-                Gson gson = new Gson();
-                Presentacion miPresentacion = gson.fromJson(json, Presentacion.class);
+                    //System.out.println(json);
 
-                System.out.print(cantidad);
-                System.out.println(miPresentacion);
+                    Gson gson = new Gson();
+                    Presentacion miPresentacion = gson.fromJson(json, Presentacion.class);
 
-            }catch(Exception e){
-                System.out.println("Error! Verifique los valores elegidos");
+                    System.out.print(cantidad);
+                    System.out.println(miPresentacion);
+
+                }catch(Exception e){
+                    System.out.println("Error! Verifique los valores elegidos");
+                }
             }
         }
-
-
     }
-
 }
