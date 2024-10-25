@@ -3,12 +3,6 @@
 ### Acerca del Conversor de divisas
 El Conversor de divisas permite hacer el cambio en 4 diferentes monedas de América (Dólar, peso colombiano, peso argentino y real brasileño). Desarrollado en Java para responder al desafío propuesto por Alura Latam y Oracle en el curso de Bakc-kend Desarrollo con Java.
 
-**Tabla de contenido**
-
-[TOCM]
-
-[TOC]
-
 ### Herramientas utilizadas:
 - Lenguaje Java.
 - API Exchangerate-api.
